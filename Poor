@@ -1,0 +1,19 @@
+echo "# Poor" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Homelow1/Poor.git
+git push -u origin main
+use Money\Currencies\ISOCurrencies;
+use Money\Currency;
+use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
+
+$money = new Money(100, new Currency('USD'));
+$currencies = new ISOCurrencies();
+
+$numberFormatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
+$moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
+
+echo $moneyFormatter->format($money); // outputs $1.00
